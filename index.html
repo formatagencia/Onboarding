@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Format Agência — Boas-vindas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f5f5f7;
+      --light-gray: #e8e8ed;
+      --mid-gray: #6e6e73;
+      --dark-gray: #1d1d1f;
+      --black: #000000;
+      --accent: #000000;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--dark-gray);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 110%, #1a1a1a 0%, #000 70%);
+    }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 760px; }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 88px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--white);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s ease forwards;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+    }
+
+    .hero-sub {
+      margin-top: 28px;
+      font-size: clamp(15px, 2.2vw, 19px);
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s ease forwards;
+    }
+
+    .hero-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+      margin: 40px auto 0;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s ease forwards;
+    }
+
+    /* ── SECTION DEFAULTS ── */
+    section { position: relative; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-white { background: var(--white); padding: 96px 0; text-align: center; }
+    .section-offwhite { background: var(--off-white); padding: 96px 0; text-align: center; }
+    .section-black { background: var(--black); padding: 96px 0; color: var(--white); text-align: center; }
+    .section-dark { background: #111; padding: 96px 0; color: var(--white); text-align: center; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 14px;
+    }
+
+    .section-black .eyebrow,
+    .section-dark .eyebrow { color: rgba(255,255,255,0.38); }
+
+    h2 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .section-black h2,
+    .section-dark h2 { color: var(--white); }
+
+    .lead {
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 400;
+      line-height: 1.7;
+      color: #3a3a3c;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-black .lead,
+    .section-dark .lead { color: rgba(255,255,255,0.8); }
+
+    /* ── SOBRE ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    @media (max-width: 660px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--light-gray);
+      border: 1px solid var(--light-gray);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .stat-cell {
+      background: var(--white);
+      padding: 28px 24px;
+    }
+
+    .stat-cell:nth-child(1) { border-radius: 15px 0 0 0; }
+    .stat-cell:nth-child(2) { border-radius: 0 15px 0 0; }
+    .stat-cell:nth-child(3) { border-radius: 0 0 0 15px; }
+    .stat-cell:nth-child(4) { border-radius: 0 0 15px 0; }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--dark-gray);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: #3a3a3c;
+      margin-top: 4px;
+    }
+
+    .values-list {
+      list-style: none;
+      margin-top: 24px;
+    }
+
+    .values-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dark-gray);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .values-list li:last-child { border-bottom: none; }
+
+    .values-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--dark-gray);
+      flex-shrink: 0;
+    }
+
+    /* ── SPECIALTIES ── */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 56px;
+    }
+
+    @media (max-width: 600px) { .spec-grid { grid-template-columns: 1fr; } }
+
+    .spec-card {
+      background: #111;
+      padding: 40px 32px;
+      transition: background 0.25s;
+    }
+
+    .spec-card:hover { background: #1a1a1a; }
+
+    .spec-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .spec-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .spec-card p {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+    }
+
+    /* ── EQUIPE ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    @media (max-width: 600px) { .team-grid { grid-template-columns: 1fr; } }
+
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .team-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .team-role {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #3a3a3c;
+      margin-bottom: 10px;
+    }
+
+    .team-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark-gray);
+      margin-bottom: 8px;
+    }
+
+    .team-card p {
+      font-size: 13px;
+      font-weight: 400;
+      color: #3a3a3c;
+      line-height: 1.6;
+    }
+
+    .team-internal {
+      margin-top: 32px;
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 28px 28px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .team-internal-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .internal-roles {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      display: inline-block;
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--dark-gray);
+    }
+
+    /* ── TIMELINE ── */
+    .timeline-block { margin-top: 56px; }
+
+    .week-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 36px 36px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .week-card::before {
+      content: attr(data-week);
+      position: absolute;
+      right: 28px;
+      top: 24px;
+      font-size: 64px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.04);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .week-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.9);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 16px;
+    }
+
+    .week-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .week-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .week-items li {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .week-items li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .callout {
+      background: rgba(255,255,255,0.07);
+      border-left: 3px solid rgba(255,255,255,0.3);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin-top: 24px;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+    }
+
+    /* ── FLUXO CONTÍNUO ── */
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    @media (max-width: 600px) { .flow-grid { grid-template-columns: 1fr; } }
+
+    .flow-card {
+      background: var(--off-white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+
+    .flow-card:hover { background: var(--light-gray); }
+
+    .flow-number {
+      font-size: 80px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--light-gray);
+      line-height: 1;
+      margin-bottom: -12px;
+    }
+
+    .flow-card:hover .flow-number { color: #ddd; }
+
+    .flow-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark-gray);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .flow-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .flow-card ul li {
+      font-size: 13px;
+      font-weight: 400;
+      color: #3a3a3c;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .flow-card ul li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: #aaa;
+      font-size: 16px;
+      top: -1px;
+    }
+
+    /* ── RESPONSABILIDADES ── */
+    .resp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    @media (max-width: 660px) { .resp-grid { grid-template-columns: 1fr; } }
+
+    .resp-card {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+
+    .resp-card-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3a3a3c;
+      margin-bottom: 16px;
+    }
+
+    .resp-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark-gray);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .resp-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .resp-card ul li {
+      font-size: 14px;
+      font-weight: 400;
+      color: #3a3a3c;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .resp-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #aaa;
+    }
+
+    /* ── REGRAS ── */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    @media (max-width: 600px) { .rules-grid { grid-template-columns: 1fr; } }
+
+    .rule-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px 28px;
+      transition: background 0.2s;
+    }
+
+    .rule-card:hover { background: rgba(255,255,255,0.07); }
+
+    .rule-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .rule-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .rule-card ul li {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .rule-card ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ── COMUNICAÇÃO ── */
+    .comm-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    @media (max-width: 600px) { .comm-cards { grid-template-columns: 1fr; } }
+
+    .comm-card {
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 32px 28px;
+    }
+
+    .comm-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin-bottom: 12px;
+    }
+
+    .comm-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .comm-card ul li {
+      font-size: 13px;
+      font-weight: 400;
+      color: #3a3a3c;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .comm-card ul li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      font-size: 16px;
+      top: -1px;
+      color: #bbb;
+    }
+
+    /* ── ALTERAÇÕES ── */
+    .alt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    @media (max-width: 660px) { .alt-grid { grid-template-columns: 1fr; } }
+
+    .alt-card {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: box-shadow 0.2s;
+    }
+
+    .alt-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
+
+    .alt-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .alt-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .alt-card ul li {
+      font-size: 13px;
+      font-weight: 400;
+      color: #3a3a3c;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .alt-card ul li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      font-size: 16px;
+      top: -1px;
+      color: #bbb;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 64px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .team-card, .flow-card, .spec-card, .rule-card, .rule-card *,
+    .resp-card, .resp-card *, .comm-card, .comm-card *,
+    .alt-card, .alt-card *, .week-card, .week-card *,
+    .team-internal, .about-grid, .about-grid * {
+      text-align: left;
+    }
+
+    .flow-card h3, .spec-card h3, .team-card h3,
+    .rule-card h3, .resp-card h3, .comm-card h3, .alt-card h3 {
+      text-align: left;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--light-gray);
+      margin: 48px 0;
+    }
+
+    .divider-dark {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 48px 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 24px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+
+    .nav-label {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--off-white);
+      border: 1px solid var(--light-gray);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--mid-gray);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .section-tag-dark {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.4);
+    }
+
+    .highlight-box {
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 28px 28px;
+      margin-top: 32px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #3a3a3c;
+      line-height: 1.7;
+    }
+
+    .highlight-box strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark-gray);
+      margin-bottom: 8px;
+    }
+
+    .deliverable-list {
+      list-style: none;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .deliverable-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    .deliverable-list li::before {
+      content: '✓';
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── JOURNEY TIMELINE ── */
+    .journey-timeline {
+      margin-top: 64px;
+      position: relative;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .journey-timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--light-gray), transparent);
+    }
+
+    .journey-step {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding-bottom: 48px;
+      position: relative;
+      text-align: left;
+    }
+
+    .journey-step--last {
+      padding-bottom: 0;
+    }
+
+    .journey-left {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .journey-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1.5px solid var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-gray);
+      letter-spacing: -0.01em;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .journey-num--final {
+      background: var(--dark-gray);
+      color: var(--white);
+      border-color: var(--dark-gray);
+    }
+
+    .journey-step:hover .journey-num {
+      background: var(--dark-gray);
+      color: var(--white);
+      border-color: var(--dark-gray);
+    }
+
+    .journey-right {
+      padding-top: 12px;
+      flex: 1;
+    }
+
+    .journey-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 6px;
+    }
+
+    .journey-tag--final {
+      color: var(--dark-gray);
+    }
+
+    .journey-right h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark-gray);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .journey-right p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #3a3a3c;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">Format Agência</span>
+    <span class="nav-label">Onboarding</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-label">Bem-vindo à parceria</span>
+      <h1>Boas-vindas<span>à Format Agência.</span></h1>
+      <p class="hero-sub">É uma satisfação iniciar essa parceria com você e sua empresa. A partir de agora, começamos um trabalho que vai além da execução de conteúdo. Estamos entrando na estrutura da sua marca.</p>
+      <div class="hero-divider"></div>
+    </div>
+  </section>
+
+  <!-- SOBRE A FORMAT -->
+  <section class="section-white">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">Sobre nós</span>
+        <h2>Sobre a Format</h2>
+        <p class="lead">A Format Agência nasceu com o propósito de ajudar empresas a se posicionarem de forma estratégica, criativa e consistente no ambiente digital.</p>
+      </div>
+
+      <div class="about-grid reveal">
+        <div>
+          <p style="font-size:15px;font-weight:400;color:#3a3a3c;line-height:1.75;margin-bottom:28px;">
+            Com mais de 7 anos de experiência em criação de marcas e mais de 400 projetos desenvolvidos no Brasil e no exterior, nos consolidamos como uma parceira para empresas que buscam crescimento com direção.
+          </p>
+          <p style="font-size:15px;font-weight:400;color:#3a3a3c;line-height:1.75;margin-bottom:28px;">
+            Acreditamos que marketing não é apenas presença. É construção de marca. Cada ação precisa fazer sentido dentro de uma estratégia maior, conectando a empresa ao público certo, no momento certo, com a mensagem certa.
+          </p>
+          <p style="font-size:14px;font-weight:500;color:var(--dark-gray);margin-bottom:8px;">Nossos valores</p>
+          <ul class="values-list">
+            <li>Transparência</li>
+            <li>Estratégia</li>
+            <li>Criatividade</li>
+            <li>Compromisso com resultados</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="about-stats">
+            <div class="stat-cell">
+              <span class="stat-num">7+</span>
+              <span class="stat-label">Anos de experiência</span>
+            </div>
+            <div class="stat-cell">
+              <span class="stat-num">400+</span>
+              <span class="stat-label">Projetos entregues</span>
+            </div>
+            <div class="stat-cell" style="grid-column:1/-1;">
+              <span class="stat-label" style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;margin-bottom:6px;display:block;">Nossa missão</span>
+              <span style="font-size:15px;font-weight:400;color:var(--dark-gray);line-height:1.5;">Transformar negócios em marcas fortes e relevantes no mercado.</span>
+            </div>
+            <div class="stat-cell" style="grid-column:1/-1;">
+              <span class="stat-label" style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;margin-bottom:6px;display:block;">Nossa visão</span>
+              <span style="font-size:15px;font-weight:400;color:var(--dark-gray);line-height:1.5;">Ser referência em estratégia e branding digital, ajudando empresas a crescerem de forma estruturada.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPECIALIDADES -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag section-tag-dark">Especialidades</span>
+        <h2>O que fazemos</h2>
+        <p class="lead">Três pilares que estruturam toda a nossa atuação.</p>
+      </div>
+      <div class="spec-grid reveal">
+        <div class="spec-card">
+          <div class="spec-icon">✦</div>
+          <h3>Branding e Identidade Visual</h3>
+          <p>Construção e estruturação da identidade da sua marca com consistência e propósito.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">◈</div>
+          <h3>Gestão de Redes Sociais</h3>
+          <p>Planejamento, produção e publicação de conteúdo estratégico para cada canal.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">◎</div>
+          <h3>Marketing Digital e Tráfego Pago</h3>
+          <p>Campanhas pagas gerenciadas com foco em resultados mensuráveis e escaláveis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPE -->
+  <section class="section-white">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">Equipe</span>
+        <h2>Quem vai trabalhar com você</h2>
+        <p class="lead">Na Format Agência, trabalhamos com uma estrutura organizada para garantir agilidade, clareza na comunicação e qualidade nas entregas.</p>
+      </div>
+
+      <p style="font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#3a3a3c;margin-top:48px;margin-bottom:16px;">No grupo de WhatsApp</p>
+      <div class="team-grid reveal">
+        <div class="team-card">
+          <div class="team-role">Estratégia</div>
+          <h3>Estrategista</h3>
+          <p>Responsável por direcionar o projeto, tomar decisões estratégicas e garantir alinhamento com os objetivos da sua marca.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-role">Conteúdo</div>
+          <h3>Social Media</h3>
+          <p>Cuida do planejamento de conteúdo, organização das pautas e acompanhamento da comunicação nas redes sociais.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-role">Performance</div>
+          <h3>Gestor de Tráfego</h3>
+          <p>Responsável pela estruturação, execução e otimização das campanhas pagas.</p>
+        </div>
+      </div>
+
+      <div class="team-internal reveal">
+        <div class="team-internal-label">Equipe interna de criação</div>
+        <div class="internal-roles">
+          <span class="chip">Design</span>
+          <span class="chip">Edição de Vídeo</span>
+          <span class="chip">Produção Criativa</span>
+        </div>
+      </div>
+      <p style="font-size:14px;font-weight:400;color:#3a3a3c;margin-top:16px;line-height:1.6;">Essa equipe atua internamente no desenvolvimento dos materiais, garantindo foco, qualidade e agilidade nas entregas. Toda a comunicação e alinhamento passam pelo time estratégico, evitando ruídos e mantendo o processo centralizado.</p>
+    </div>
+  </section>
+
+  <!-- PRIMEIROS 15 DIAS -->
+  <section class="section-black">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag section-tag-dark">Início da parceria</span>
+        <h2>Primeiros 15 dias</h2>
+        <p class="lead">Os primeiros 15 dias da nossa parceria são totalmente estratégicos. É nesse período que estruturamos as bases da comunicação.</p>
+      </div>
+
+      <div class="timeline-block reveal">
+        <div class="week-card" data-week="S1">
+          <span class="week-badge">Semana 1</span>
+          <h3>Organização e Diagnóstico</h3>
+          <ul class="week-items">
+            <li>Criação do grupo de WhatsApp</li>
+            <li>Envio do briefing estratégico</li>
+            <li>Solicitação de acessos aos perfis (Instagram, Facebook, Google etc.)</li>
+            <li>Envio dos materiais (logo, fotos e vídeos)</li>
+            <li>1ª reunião de análise do briefing</li>
+            <li>Revisão de acessos e materiais recebidos</li>
+          </ul>
+        </div>
+
+        <div class="week-card" data-week="S2">
+          <span class="week-badge">Semana 2</span>
+          <h3>Estratégia e Produção</h3>
+          <ul class="week-items">
+            <li>Criação do planejamento estratégico</li>
+            <li>Apresentação e aprovação da estratégia</li>
+            <li>Início da produção de conteúdos (copy, design e roteiros)</li>
+            <li>Organização dos primeiros materiais para aprovação</li>
+          </ul>
+        </div>
+
+        <div class="callout">
+          <strong style="display:block;color:rgba(255,255,255,0.95);font-size:14px;font-weight:600;margin-bottom:6px;">Durante esses primeiros 15 dias, o foco não é publicação. É construção.</strong>
+          Esse é o momento em que definimos direção, alinhamos a comunicação e estruturamos tudo que será executado na sequência. Ao final desse período, você terá um planejamento estratégico definido, conteúdos iniciais produzidos e uma base organizada para início consistente das publicações.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- LINHA DO TEMPO -->
+  <section class="section-white">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">Jornada de onboarding</span>
+        <h2>Do início ao primeiro ciclo</h2>
+        <p class="lead">Cada etapa foi pensada para garantir que sua marca entre em operação de forma estruturada, estratégica e sem improvisos. Tudo acontece nos primeiros 15 dias de parceria.</p>
+      </div>
+
+      <div class="journey-timeline reveal">
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">01</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Diagnóstico</div>
+            <h3>Briefing via Formulário</h3>
+            <p>Você recebe um formulário estratégico com perguntas sobre seu negócio, público, posicionamento e objetivos. É o nosso ponto de partida para entender sua marca com profundidade antes de qualquer ação.</p>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">02</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Alinhamento</div>
+            <h3>Reunião de Alinhamento</h3>
+            <p>Com o briefing em mãos, realizamos uma reunião para aprofundar o diagnóstico, esclarecer dúvidas e alinhar expectativas. É aqui que construímos a base do relacionamento estratégico.</p>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">03</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Imersão</div>
+            <h3>Questionário Detalhado</h3>
+            <p>Um segundo nível de perguntas, mais específico, para mapear tom de voz, referências visuais, diferenciais do negócio e detalhes que vão guiar toda a produção de conteúdo.</p>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">04</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Conteúdo</div>
+            <h3>Desafio de Teste de Vídeos</h3>
+            <p>Você recebe um desafio prático de gravação para que possamos avaliar sua desenvoltura em câmera, identificar o melhor formato de vídeo para o seu perfil e alinhar o estilo de produção.</p>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">05</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Estratégia</div>
+            <h3>Planejamento Estratégico</h3>
+            <p>Com todas as informações coletadas, desenvolvemos o plano completo: pilares de conteúdo, linha editorial, calendário, formatos e diretrizes de comunicação. Tudo pensado para a sua marca.</p>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">06</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Validação</div>
+            <h3>Reunião de Aprovação do Planejamento</h3>
+            <p>Apresentamos o planejamento estratégico completo para sua análise e aprovação. Nenhuma produção começa sem que você esteja 100% alinhado com a direção definida.</p>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">07</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Produção</div>
+            <h3>Fase de Criação de Conteúdo</h3>
+            <p>Com o plano aprovado, a equipe entra em ação: redação das copys, desenvolvimento dos designs, produção e edição dos vídeos. Tudo criado dentro do conceito definido para a sua marca.</p>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">08</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Revisão</div>
+            <h3>Aprovação da Primeira Remessa</h3>
+            <p>Os primeiros conteúdos produzidos são enviados para sua avaliação. Você revisa, solicita ajustes dentro das rodadas previstas e dá o sinal verde para publicação.</p>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-left"><div class="journey-num">09</div></div>
+          <div class="journey-right">
+            <div class="journey-tag">Lançamento</div>
+            <h3>Publicação da Primeira Remessa</h3>
+            <p>Os conteúdos aprovados vão ao ar. Sua marca começa a se comunicar de forma estratégica, consistente e com identidade definida. É o início visível de tudo que foi construído nos bastidores.</p>
+          </div>
+        </div>
+
+        <div class="journey-step journey-step--last">
+          <div class="journey-left"><div class="journey-num journey-num--final">10</div></div>
+          <div class="journey-right">
+            <div class="journey-tag journey-tag--final">Continuidade</div>
+            <h3>Ciclo Contínuo</h3>
+            <p>A partir daqui, o trabalho entra no ritmo semanal: os conteúdos da semana seguinte são sempre enviados para aprovação na semana anterior. Um ciclo contínuo, previsível e em constante evolução.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FLUXO CONTÍNUO -->
+  <section class="section-offwhite">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">Ciclo semanal</span>
+        <h2>Fluxo de Trabalho Contínuo</h2>
+        <p class="lead">A partir da segunda semana, o trabalho entra em um ritmo contínuo e organizado, sempre com base no planejamento aprovado. Nosso objetivo é garantir consistência, previsibilidade e evolução constante dos resultados.</p>
+      </div>
+
+      <div class="flow-grid reveal">
+        <div class="flow-card">
+          <div class="flow-number">01</div>
+          <h3>Planejamento e Pauta</h3>
+          <ul>
+            <li>Definição da pauta de conteúdos (temas, datas e objetivos)</li>
+            <li>Ajustes estratégicos com base nos resultados anteriores</li>
+            <li>Envio da pauta para validação</li>
+          </ul>
+        </div>
+        <div class="flow-card">
+          <div class="flow-number">02</div>
+          <h3>Produção de Conteúdo</h3>
+          <ul>
+            <li>Criação das copys (legendas e textos)</li>
+            <li>Desenvolvimento dos designs</li>
+            <li>Elaboração de roteiros de vídeo (quando aplicável)</li>
+            <li>Início da edição dos vídeos</li>
+          </ul>
+        </div>
+        <div class="flow-card">
+          <div class="flow-number">03</div>
+          <h3>Aprovação</h3>
+          <ul>
+            <li>Envio de todo o material produzido para aprovação</li>
+            <li>Ajustes solicitados dentro do limite previsto</li>
+            <li>Confirmação de aprovação final</li>
+          </ul>
+        </div>
+        <div class="flow-card">
+          <div class="flow-number">04</div>
+          <h3>Publicações e Relatórios</h3>
+          <ul>
+            <li>Agendamento e publicação dos conteúdos aprovados</li>
+            <li>Monitoramento de desempenho</li>
+            <li>Preparação do relatório mensal</li>
+            <li>Reunião de fechamento com análise de métricas e alinhamento do próximo ciclo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPONSABILIDADES -->
+  <section class="section-white">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">Responsabilidades</span>
+        <h2>Parceria que gera resultado</h2>
+        <p class="lead">O resultado do projeto não depende apenas da execução da agência. Ele depende da qualidade e da agilidade das decisões do cliente ao longo do processo.</p>
+      </div>
+
+      <div class="resp-grid reveal">
+        <div class="resp-card">
+          <div class="resp-card-label">Agência</div>
+          <h3>Responsabilidades da Format</h3>
+          <ul>
+            <li>Estruturar o planejamento estratégico de comunicação e marketing</li>
+            <li>Desenvolver conteúdos conforme escopo contratado</li>
+            <li>Gerenciar e agendar publicações</li>
+            <li>Administrar campanhas de tráfego pago (quando incluso)</li>
+            <li>Monitorar métricas e apresentar relatórios mensais</li>
+            <li>Oferecer direcionamento estratégico contínuo</li>
+            <li>Organizar toda a comunicação nos canais oficiais</li>
+          </ul>
+        </div>
+        <div class="resp-card">
+          <div class="resp-card-label">Cliente</div>
+          <h3>Responsabilidades do Cliente</h3>
+          <ul>
+            <li>Fornecer informações de forma clara e dentro dos prazos</li>
+            <li>Enviar materiais necessários (logo, fotos, vídeos, etc.)</li>
+            <li>Liberar acessos às plataformas de forma ágil</li>
+            <li>Aprovar conteúdos dentro dos prazos definidos</li>
+            <li>Dar feedbacks objetivos durante o processo</li>
+            <li>Participar dos alinhamentos e reuniões</li>
+          </ul>
+          <div class="highlight-box" style="margin-top:24px;">
+            <strong>Por que isso é importante</strong>
+            Garante que a estratégia seja aplicada no tempo certo, mantém o fluxo de publicações sem atrasos, evita retrabalho e permite foco total na execução estratégica.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGRAS DE TRABALHO -->
+  <section class="section-black">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag section-tag-dark">Organização</span>
+        <h2>Regras de Trabalho</h2>
+        <p class="lead">Para garantir organização e qualidade nas entregas, seguimos algumas diretrizes.</p>
+      </div>
+
+      <div class="rules-grid reveal">
+        <div class="rule-card">
+          <h3>Prazos para aprovação</h3>
+          <ul>
+            <li>Todo material será enviado para validação prévia</li>
+            <li>Apenas conteúdos aprovados serão publicados</li>
+            <li>O prazo de aprovação é de até 5 dias úteis</li>
+            <li>Atrasos impactam diretamente os resultados do projeto</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3>Pedidos urgentes</h3>
+          <ul>
+            <li>Não realizamos demandas para o mesmo dia</li>
+            <li>Prazo mínimo: 2 dias úteis</li>
+            <li>Demandas fora do escopo podem ter custo adicional</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3>Demandas fora do escopo</h3>
+          <ul>
+            <li>Serão avaliadas separadamente</li>
+            <li>Terão orçamento e prazo definidos antes da execução</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3>Horário de atendimento</h3>
+          <ul>
+            <li>Segunda a sexta, das 8h às 17h</li>
+            <li>Mensagens fora desse período serão respondidas no próximo dia útil</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLUXO DE COMUNICAÇÃO -->
+  <section class="section-offwhite">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">Comunicação</span>
+        <h2>Fluxo de Comunicação</h2>
+        <p class="lead">Toda a comunicação é centralizada para garantir clareza, agilidade e alinhamento entre todas as partes envolvidas no projeto.</p>
+      </div>
+
+      <div class="comm-cards reveal">
+        <div class="comm-card">
+          <h3>Grupo de WhatsApp</h3>
+          <ul>
+            <li>Canal oficial de comunicação</li>
+            <li>Todas as demandas, aprovações e alinhamentos devem ser feitos por lá</li>
+            <li>Evitar mensagens privadas para manter o time alinhado</li>
+          </ul>
+        </div>
+        <div class="comm-card">
+          <h3>Aprovações</h3>
+          <ul>
+            <li>Devem ocorrer pelo canal oficial</li>
+            <li>Prazo máximo de 5 dias úteis</li>
+            <li>Sem aprovação, o conteúdo não será publicado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POLÍTICA DE ALTERAÇÕES -->
+  <section class="section-white">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">Revisões</span>
+        <h2>Política de Alterações</h2>
+        <p class="lead">Processos claros para garantir qualidade sem retrabalho desnecessário.</p>
+      </div>
+
+      <div class="alt-grid reveal">
+        <div class="alt-card">
+          <h3>Rodadas de alteração</h3>
+          <ul>
+            <li>Até 2 rodadas por material</li>
+            <li>Solicitações devem ser enviadas de forma consolidada</li>
+            <li>Após isso, novas alterações serão tratadas como demanda adicional</li>
+          </ul>
+        </div>
+        <div class="alt-card">
+          <h3>Escopo</h3>
+          <ul>
+            <li>Alterações devem respeitar o conceito aprovado</li>
+            <li>Mudanças estruturais serão tratadas como novo projeto</li>
+          </ul>
+        </div>
+        <div class="alt-card">
+          <h3>Prazos</h3>
+          <ul>
+            <li>Até 5 dias úteis para solicitar ajustes</li>
+            <li>Sem retorno, o material será considerado aprovado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Format Agência</div>
+    <p>Transformar negócios em marcas fortes e relevantes no mercado.</p>
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
